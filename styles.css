@@ -1,0 +1,196 @@
+body{
+margin: 0px 150px 0px 150px;
+}
+
+/* Header */
+
+header{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+background-color: rgb(46, 74, 75);
+color: black;
+}
+
+#nom p{
+    font-family: 'Marck Script';
+    font-size: 40px;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+}
+
+h1{
+    font-family: 'Marck Script';
+    font-size: 80px;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#propriétéphoto{
+    margin-top: 30px;
+border-radius: 100px;
+}
+
+/* CV */
+
+.bodyCV{
+    background-color: black;
+    color: white;
+}
+
+table{
+margin: auto;
+padding: 10px;
+width: 900px;
+border-collapse: collapse;
+}
+
+td, th{
+    border: solid 2px white;
+}
+
+#pres{
+text-align: center;
+padding-top: 20px;
+}
+
+#textepres{
+    text-align: justify;
+    margin-top: 50px;
+}
+
+#titreexperiences{
+    text-align: center;
+    margin-top: 50px;
+}
+
+#titrediplomes{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.competences{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+/* hobbie */
+
+.bodyhobbie{
+    background-color: black;
+    color: white;
+}
+
+.hobbieheader{
+    color: black;
+}
+
+.hobbie{
+text-align: center;
+}
+
+.containerintro{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 5px;
+}
+
+#vidéo{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+#ytvideo{
+    width: 600px;
+    height: 300px;
+    border: none;
+}
+
+
+/* contact */
+
+.bodycontact{
+    background-color: black;
+    color: white;
+}
+
+.headercontact{
+    color: black;
+}
+
+#contact{
+    text-align: center;
+}
+
+.formulaire{
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#radio{
+    padding: 10px;
+}
+
+#prénomnom{
+    padding: 10px;
+}
+
+#contrat{
+    padding: 10px;
+}
+
+#message{
+    padding: 10px;
+}
+
+#envoyer{
+    padding: 10px;
+}
+
+
+/* Footer */
+
+footer{
+    background-color: gray;
+}
+
+.lien {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.lien div {
+    width: 100px;
+    font-size: 25px;
+}
+
+
+/* menu */
+
+.boutonmenu{
+    margin-top: 30px;
+display:block;
+width:200px;
+line-height:50px;
+text-align: center;
+border: solid 2px;
+border-radius: 20px;
+color:white;
+text-decoration:none;
+}
+
+.menu {
+    font-size: 25px;
+    display: flex;
+    justify-content: space-around;
+}
