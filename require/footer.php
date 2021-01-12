@@ -1,13 +1,13 @@
 <footer>
     <div class="lien">
         <div>
-            <a href="./index.php">CV</a>
+            <a href="index.php?page=cv">CV</a>
         </div>
         <div>
-            <a href="./hobbie.php">Hobbies</a>
+            <a href="index.php?page=hobbie">Hobbies</a>
         </div>
         <div>
-            <a href="./contact.php">Contact</a>
+            <a href="index.php?page=contact">Contact</a>
         </div>
         <div>
             <a href="https://www.linkedin.com/in/pmartinet/">

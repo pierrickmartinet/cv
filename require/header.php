@@ -29,12 +29,12 @@
 
     <div class="menu">
         <div>
-            <a class="boutonmenu" href="./index.php">CV</a>
+            <a class="boutonmenu" href="index.php?page=cv">CV</a>
         </div>
         <div>
-            <a class="boutonmenu" href="./hobbie.php">Hobbies</a>
+            <a class="boutonmenu" href="index.php?page=hobbie">Hobbies</a>
         </div>
         <div>
-            <a class="boutonmenu" href="./contact.php">Contact</a>
+            <a class="boutonmenu" href="index.php?page=contact">Contact</a>
         </div>
     </div>
