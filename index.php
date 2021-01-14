@@ -1,11 +1,18 @@
 <?php
 
-if (isset($_GET['page'])) {
-    if ($_GET ['page'] == 'cv') {
+# fonction filtre de nettoyage URL
+
+$pagefiltre = filter_input (INPUT_GET, 'page' ,FILTER_SANITIZE_STRING);
+
+
+# front controller
+
+if (isset ($pagefiltre)) {
+    if ($pagefiltre == 'cv') {
         require 'pages/cv.php';
-    } else if ($_GET ['page'] == 'hobbie') {
+    } else if ($pagefiltre == 'hobbie') {
         require 'pages/hobbie.php';
-    } else if ($_GET ['page'] == 'contact') {
+    } else if ($pagefiltre == 'contact') {
         require 'pages/contact.php';
     } else {
         require 'pages/404.php';

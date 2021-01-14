@@ -21,7 +21,7 @@
         <p>En formation de technicien développeur web</p>
     </div>
     <div id="photo">
-        <img src="PhotoProfilPierrick.jpg"
+        <img src="/images/PhotoProfilPierrick.jpg"
              height="150" width="150" alt="photoCV" id="propriétéphoto">
     </div>
 
