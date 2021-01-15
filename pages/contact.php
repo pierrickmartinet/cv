@@ -7,45 +7,60 @@ require 'require/header.php';
 
 
 # Création d'un fichier avec date
-
+date_default_timezone_set('Europe/Paris'); // Configuration de l'horloge du site
 $filecontact = 'contact/contact_' . date("Y-m-d-H-i-s") . '.txt';
 
 # Récupération des données formulaire dans des variables
 
 $recupcivilite = filter_input(INPUT_POST, 'Civilite');// récupère la donnée de "name" des inputs, select, submit, ... et les places dans une variable
-$recupprenom = filter_input(INPUT_POST, 'Prenom');
-$recupnom = filter_input(INPUT_POST, 'Nom');
-$recupemail = filter_input(INPUT_POST, 'email');
+$recupprenom = filter_input(INPUT_POST, 'Prenom', FILTER_SANITIZE_STRING);
+$recupnom = filter_input(INPUT_POST, 'Nom', FILTER_SANITIZE_STRING);
+$recupemail = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING); //vérifie si e-mail vide (sans filtre mail conforme)
+$recupemailnonconforme = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL); // vérifie si email est confrome (avec filtre)
 $recupraisoncontact = filter_input(INPUT_POST, 'raisoncontact');
-$recupmessage = filter_input(INPUT_POST, 'message');
+$recupmessage = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
 $recupenvoyer = filter_input(INPUT_POST, 'envoyer');
 $formulaire = true;
 $tableauerreur = []; // Variable d'un tableau d'erreur vide
 
+$miseenformevariables = 'Sexe: ' . $recupcivilite . PHP_EOL . // Mise en forme fichier txt
+                        'Prénom: ' . $recupprenom . PHP_EOL .
+                        'Nom: ' . $recupnom . PHP_EOL .
+                        'e-mail: ' . $recupemail . PHP_EOL .
+                        'Raison du contact: ' . $recupraisoncontact . PHP_EOL .
+                        'Message: ' . $recupmessage . PHP_EOL;
+
 if (isset($recupenvoyer)) { // Si le bouton envoyé éxiste (à été soumis)
-    if (empty($recupprenom)) { // Si la variable recuprenom est vide...
+    if (empty(trim($recupprenom))) { // Si la variable recuprenom est vide, trim évite les espaces
         $tableauerreur['Prenom'] = "Veuillez saisir un Prénom"; // Création d'une case d'un tableau avec le message d'erreur
-        $formulaire = false; // Le formulaire devient faux
+        $formulaire = false; // Le formulaire devient faux et l'envoi ne se fera donc pas
     }
-    if (empty($recupnom)) {
+    if (empty(trim($recupnom))) {
         $tableauerreur ['Nom'] = "Veuillez saisir un Nom";
         $formulaire = false;
     }
-    if (empty($recupemail)) {
+    if (empty(trim($recupemail))) {
         $tableauerreur ['email'] = "Veuillez saisir un e-mail";
+        $formulaire = false;
+    }
+    if ($recupemailnonconforme == false){
+        $tableauerreur ['emailnonconforme'] = "Veuillez saisir une adresse mail conforme";
         $formulaire = false;
     }
     if (empty($recupraisoncontact)) {
         $tableauerreur ['raisoncontact'] = "Veuillez séléctionner un élément";
         $formulaire = false;
     }
-    if (empty($recupmessage)) {
+    if (strlen($recupmessage) < 5){
+        $tableauerreur ['messagetropcourt'] = "Veuillez saisir un texte contenant au moins 5 caractères";
+    }
+    if (empty(trim($recupmessage))) {
         $tableauerreur ['message'] = "Veuillez saisir un message";
         $formulaire = false;
     }
 
-    if ($formulaire == true) { // Si le formulaire est vrai, donc pas de champs non rempli, alors l'envoi se fait et le fichier eszt créée
-        (file_put_contents($filecontact, [$recupcivilite, $recupprenom, $recupnom, $recupemail, $recupraisoncontact, $recupmessage]));
+    if ($formulaire == true) { // Si le formulaire est vrai, donc pas de champs non rempli, alors l'envoi se fait et le fichier est créée si aucun foichier éxiste déjà
+        (file_put_contents($filecontact, [$miseenformevariables]));
     }
 }
 var_dump($tableauerreur, $formulaire); // Permet d'afficher un tableau ou une variable
@@ -85,9 +100,12 @@ var_dump($tableauerreur, $formulaire); // Permet d'afficher un tableau ou une va
                         if (isset($tableauerreur['email'])) {
                             echo $tableauerreur['email'];
                         }
+                        else if (isset($tableauerreur['emailnonconforme'])){
+                            echo $tableauerreur ['emailnonconforme'];
+                        }
                         ?>
                     </div>
-                    <input type="email" name="email" placeholder="Veuillez saisir votre e-mail">
+                    <input type="text" name="email" placeholder="Veuillez saisir votre e-mail">
                 </div>
                 <div style="color: red">
                     <?php
@@ -108,6 +126,9 @@ var_dump($tableauerreur, $formulaire); // Permet d'afficher un tableau ou une va
                     <?php
                     if (isset($tableauerreur['message'])) {
                         echo $tableauerreur['message'];
+                    }
+                    elseif (isset($tableauerreur['messagetropcourt'])){
+                        echo $tableauerreur['messagetropcourt'];
                     }
                     ?>
                 </div>
