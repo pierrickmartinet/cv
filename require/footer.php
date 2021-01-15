@@ -15,6 +15,16 @@
                      height="30" width="30" alt="logoLinkedIn">
             </a>
         </div>
+        <div>
+            <?php
+            echo 'Ouverture de la session ' . $_SESSION['dateFirstVisit'];
+            ?>
+        </div>
+        <div>
+            <?php
+            echo $_SESSION['countViewPage'] . ' Pages vues';
+            ?>
+        </div>
     </div>
 </footer>
 </body>

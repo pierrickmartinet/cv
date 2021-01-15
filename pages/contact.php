@@ -5,9 +5,6 @@ $metaTitle = "Contact";
 $metaDescription = "Bonjour, bienvenue sur la page contact du site";
 require 'require/header.php';
 
-
-# Création d'un fichier avec date
-date_default_timezone_set('Europe/Paris'); // Configuration de l'horloge du site
 $filecontact = 'contact/contact_' . date("Y-m-d-H-i-s") . '.txt';
 
 # Récupération des données formulaire dans des variables
